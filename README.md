@@ -1,7 +1,8 @@
 ## Aave Wallet Tracker
 
 This project provides a simple and secure way to track multiple Aave wallets on the Polygon network through a local Python application.
-It displays important financial information in a GUI and refreshes data automatically at regular intervals.
+It displays important financial information in a GUI and refreshes data automatically at regular intervals. The interface was created using AI, with my prompts and source
+code as reference.
 
 ## 📚 Features
 
@@ -78,11 +79,11 @@ Selenium WebDriver automates browser interactions by:
 
 ## 🗂️ File Structure
 
-File	Purpose
-- wallets.encrypted	Encrypted file storing your wallet addresses.
-- salt.bin	Salt used for password-based encryption key.
-- aave_dashboard_gui_encrypted.log	Log file capturing errors and events.
-- Main script (.py)	Runs the full application and handles logic.
+File    Purpose
+- wallets.encrypted Encrypted file storing your wallet addresses.
+- salt.bin  Salt used for password-based encryption key.
+- aave_dashboard_gui_encrypted.log  Log file capturing errors and events.
+- Main script (.py) Runs the full application and handles logic.
 
 ## 🌟 Pro Tips
 
