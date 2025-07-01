@@ -1,4 +1,4 @@
-###Aave Wallet Tracker
+Aave Wallet Tracker
 
 This project provides a simple and secure way to track multiple Aave wallets on the Polygon network through a local Python application. It displays important financial information in a graphical user interface (GUI) and refreshes data automatically at regular intervals. The interface was created using AI, with my prompts and source code as reference.
 
