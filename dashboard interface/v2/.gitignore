@@ -1,0 +1,21 @@
+# Ignore user data files
+wallets.encrypted
+salt.bin
+
+# Ignore distribution files
+distribution/
+
+# Ignore build artifacts
+build/
+dist/
+*.spec
+*.ico
+*.icns
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore system files
+.DS_Store
