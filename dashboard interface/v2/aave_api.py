@@ -346,28 +346,34 @@ class AaveAPIClient:
     def format_health_factor(self, account_data: Dict) -> str:
         """
         Extract and format health factor from account data
-        
+
         Args:
             account_data: Response from get_user_account_data
-            
+
         Returns:
             Formatted health factor string
         """
         try:
             if not account_data or 'healthFactor' not in account_data:
                 return "N/A"
-            
+
             health_factor = account_data['healthFactor']
             if isinstance(health_factor, (int, float)):
+                # If health factor is very high (infinity proxy), show as infinity symbol
+                if health_factor >= 999999 or health_factor == float('inf'):
+                    return "∞"
                 return f"{health_factor:.3f}"
             elif isinstance(health_factor, str):
                 try:
-                    return f"{float(health_factor):.3f}"
+                    hf_float = float(health_factor)
+                    if hf_float >= 999999 or hf_float == float('inf'):
+                        return "∞"
+                    return f"{hf_float:.3f}"
                 except ValueError:
                     return health_factor
             else:
                 return "N/A"
-                
+
         except Exception as e:
             logger.error(f"Error formatting health factor: {e}")
             return "N/A"

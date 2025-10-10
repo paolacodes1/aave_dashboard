@@ -665,7 +665,10 @@ class WalletDashboardGUI(tk.Tk):
             self._last_aave_canvas_width = canvas_width
             est_card_width = self.ESTIMATED_CARD_WIDTH + (2 * self.CARD_PADDING_X); num_cols = max(1, canvas_width // est_card_width)
             logging.info(f"CanvasW: {canvas_width}, Est. card W: {est_card_width}, Cols: {num_cols}")
-            for i in range(num_cols): self.aave_scrollable_cards_frame.grid_columnconfigure(i, weight=0)
+            # Reset all columns first
+            for i in range(10): self.aave_scrollable_cards_frame.grid_columnconfigure(i, weight=0, minsize=0)
+            # Configure only needed columns with fixed width
+            for i in range(num_cols): self.aave_scrollable_cards_frame.grid_columnconfigure(i, weight=0, minsize=self.ESTIMATED_CARD_WIDTH)
             for i, wallet_info_orig in enumerate(self.wallets_data_list):
                  addr = wallet_info_orig['address']; render_d = all_render_data.get(addr)
                  if render_d:
@@ -682,7 +685,8 @@ class WalletDashboardGUI(tk.Tk):
 
     def _create_wallet_card_widget(self, parent, wallet_info, fetched_data):
         """Create wallet card widget exactly like v1.3"""
-        address = wallet_info['address']; frame=tk.Frame(parent,bd=1,relief=tk.SOLID,padx=10,pady=10,bg=BG_COLOR,highlightbackground=BORDER_COLOR,highlightthickness=1)
+        address = wallet_info['address']; frame=tk.Frame(parent,bd=1,relief=tk.SOLID,padx=10,pady=10,bg=BG_COLOR,highlightbackground=BORDER_COLOR,highlightthickness=1,width=self.ESTIMATED_CARD_WIDTH)
+        frame.grid_propagate(False)  # Prevent frame from resizing based on content
         display_name = wallet_info.get('name','').strip(); header_text = display_name if display_name else f"{address[:6]}...{address[-4:]}"
         tk.Label(frame,text=f"{header_text}",font=self.heading_font,bg=BG_COLOR,fg=FG_COLOR).pack(anchor="w",pady=(0,1))
         tk.Label(frame,text=address,font=self.link_font,bg=BG_COLOR,fg="#AAAAAA",justify=tk.LEFT,wraplength=250).pack(anchor="w",pady=(0,3))
