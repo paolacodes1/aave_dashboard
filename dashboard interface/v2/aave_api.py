@@ -81,7 +81,9 @@ class AaveAPIClient:
                 "https://arbitrum.llamarpc.com"
             ],
             'avalanche': [
-                "https://avalanche.public-rpc.com"
+                "https://api.avax.network/ext/bc/C/rpc",
+                "https://avalanche.public-rpc.com",
+                "https://rpc.ankr.com/avalanche"
             ]
         }
 
@@ -143,17 +145,21 @@ class AaveAPIClient:
             pool_address = self.pool_addresses.get(network)
             rpc_list = self.rpc_urls.get(network, [])
 
+            logger.debug(f"Trying {network} network with {len(rpc_list)} RPC endpoints")
+
             for rpc_url in rpc_list:
                 try:
                     data = self._call_aave_contract(wallet_address, pool_address, rpc_url, network)
                     if data:
                         logger.info(f"✅ Found data on {network} via {rpc_url.split('/')[2]}")
                         return data
+                    else:
+                        logger.debug(f"{network} via {rpc_url}: No position data")
                 except Exception as e:
                     logger.debug(f"{network} via {rpc_url}: {str(e)[:100]}")
                     continue
 
-        logger.warning("All RPC calls failed")
+        logger.warning(f"No Aave position found for {wallet_address[:10]} on any network")
         return None
 
     def _call_aave_contract(self, wallet_address: str, pool_address: str, rpc_url: str, network: str) -> Optional[Dict]:
@@ -547,10 +553,20 @@ class AaveAPIClient:
             liq_threshold = account_data.get('currentLiquidationThreshold', 8500) / 10000
             network = account_data.get('network', 'ethereum')
 
-            if total_debt == 0 or total_collateral == 0:
+            # If no debt, user cannot be liquidated
+            if total_debt == 0:
                 return {
                     'liquidation_item_1_coin': 'N/A',
                     'liquidation_item_1_price': 'No Debt',
+                    'liquidation_item_2_coin': 'N/A',
+                    'liquidation_item_2_price': 'N/A'
+                }
+
+            # If no collateral but has debt (shouldn't happen but handle it)
+            if total_collateral == 0:
+                return {
+                    'liquidation_item_1_coin': 'N/A',
+                    'liquidation_item_1_price': 'No Collateral',
                     'liquidation_item_2_coin': 'N/A',
                     'liquidation_item_2_price': 'N/A'
                 }
