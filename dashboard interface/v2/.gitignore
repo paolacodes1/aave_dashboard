@@ -1,6 +1,14 @@
 # Ignore user data files
 wallets.encrypted
 salt.bin
+crypto_coins_tracked.json
+*.log
+
+# Ignore sensitive files
+.env
+credentials.json
+secrets.json
+config.json
 
 # Ignore distribution files
 distribution/
@@ -16,6 +24,14 @@ dist/
 __pycache__/
 *.pyc
 *.pyo
+*.pyd
 
 # Ignore system files
 .DS_Store
+Thumbs.db
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+*~
