@@ -1,0 +1,55 @@
+╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║     AAVE DASHBOARD - WINDOWS BUILD PACKAGE                     ║
+║     Quick Start Guide                                          ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+📦 WHAT YOU NEED:
+   ✓ Python 3.8 or newer (from python.org)
+   ✓ Internet connection (for downloading dependencies)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 FASTEST WAY (3 STEPS):
+
+   1. Install Python from: https://www.python.org/downloads/
+      ⚠️  CHECK "Add Python to PATH" during installation!
+
+   2. Double-click: build_windows.bat
+
+   3. Find your app in: dist\AaveDashboard.exe
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📖 DETAILED INSTRUCTIONS:
+   → Open BUILD_INSTRUCTIONS.md for step-by-step guide
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❓ TROUBLESHOOTING:
+
+   Problem: "Python is not recognized"
+   Fix: Reinstall Python with "Add to PATH" option checked
+
+   Problem: Build fails
+   Fix: Open Command Prompt as Administrator and run:
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+
+   Problem: Windows blocks the .exe
+   Fix: Click "More info" → "Run anyway"
+        (This is normal for PyInstaller apps)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ AFTER BUILD:
+   Your distributable file will be in:
+   📁 dist\AaveDashboard.exe
+
+   This single file can be shared with any Windows user!
+   No Python installation needed to run it.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Version: 2.0 (Latest with all fixes)
