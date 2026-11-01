@@ -1,7 +1,7 @@
 # SECURITY: Pinned versions to prevent supply chain attacks
 requests==2.32.3
 cryptography==44.0.2
-Pillow==11.0.0
+Pillow==13.0.0
 beautifulsoup4==4.13.4
 
 # Note: To update dependencies, review security advisories first:
