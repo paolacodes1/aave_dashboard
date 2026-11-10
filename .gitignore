@@ -2,3 +2,10 @@ __pycache__/
 *.pyc
 npm-cache/
 .DS_Store
+
+# Build artifacts
+build/
+*.spec
+
+# Local agent config
+.claude/
